@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    ViewBag.Id = "123";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/ui-grid.css">
+</head>
+
+
+<body  >        
+
+    <div ng-app="my5App" ng-controller="gfhhj">
+        kl {{message}}
+        <div style="height:{{nggridheight}};  overflow-x:hidden" ng-grid="gridOptions"></div>
+
+    </div>
+
+
+
+    <script>
+
+       var dslApp = angular.module('my5App', ['ngGrid']);
+
+
+    dslApp.controller('gfhhj', function ($scope) {
+
+
+        var cellTemplateConsLineHeight = '<div style=" line-height:45px; height:45px;   margin-left:5px; margin-right:5px; width:auto;word-wrap:break-word ">{{row.getProperty(col.field)}}</div>';
+        var cellTemplateCons = '<div style=" height:45px;   margin-left:5px; margin-right:5px; width:auto;word-wrap:break-word ">{{row.getProperty(col.field)}}</div>';
+
+
+        $scope.perPageSizeN = parseInt((window.screen.availHeight / 46 / 10));
+        $scope.splitRowCount = 10;
+        $scope.pagingOptions = {
+            pageSizes: [$scope.perPageSizeN * $scope.splitRowCount, $scope.perPageSizeN * 2 * $scope.splitRowCount, $scope.perPageSizeN * $scope.splitRowCount * 3],
+            pageSize: $scope.perPageSizeN * $scope.splitRowCount,
+            currentPage: 1
+        };
+
+
+
+        $scope.gridOptions = {
+
+
+            enableRowSelection: false,
+            enableHighlighting: true,
+            rowHeight: 47,
+            enableRowReordering: true,
+
+            data: 'appListData',
+
+            i18n: 'zh-cn',
+            enablePaging: true,
+            showFooter: true,
+            totalServerItems: 'totalServerItems',
+            pagingOptions: $scope.pagingOptions,
+            showFilter: true,
+            columnDefs: [{
+
+
+                height: 80,
+                width: 50,
+                displayName: '图标',
+                cellTemplate: '<div style="line-height:48px;vertical-align:middle;text-align:center"><img src="{{row.getProperty(\'iconfilename\')}}" style="  width:35px; height:35px"></img></div>'
+            },
+            {
+                height: 80,
+                field: 'appname',
+                displayName: '应用名称',
+                cellTemplate: cellTemplateConsLineHeight
+            },
+             {
+                 height: 80,
+                 field: 'appname',
+                 displayName: '应用名称',
+                 cellTemplate: cellTemplateConsLineHeight
+             },
+             {
+                 height: 80,
+                 field: 'summarydesp',
+                 displayName: '描述',
+                 cellTemplate: cellTemplateConsLineHeight
+             },
+            {
+                height: 80,
+                field: 'versionnumber',
+                displayName: '版本号',
+                cellTemplate: cellTemplateConsLineHeight
+            }
+         
+
+
+            ]
+        };
+
+
+      $scope.nggridheight = "223px";
+
+      $scope.message = "Infrgistics";
+
+
+      $scope.appListData = null;
+
+
+      $scope.rowHeight = 46;
+
+
+
+
+
+      $scope.gridOptions.pagingOptions = $scope.pagingOptions;
+      $scope.totalServerItems = 0;
+
+
+
+
+    });
+
+    </script>
+</body>
+
+
+
+

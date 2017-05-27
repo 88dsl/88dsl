@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    ViewBag.Id = "123";
+}
+
+
+<body>
+
+
+
+    <script>
+        dslApp.controller('gfhhj', function ($scope, $http) {
+
+
+
+            var cellTemplateConsLineHeight = '<div style=" line-height:45px; height:45px;   margin-left:5px; margin-right:5px; width:auto;word-wrap:break-word ">{{row.getProperty(col.field)}}</div>';
+            var cellTemplateCons = '<div style=" height:45px;   margin-left:5px; margin-right:5px; width:auto;word-wrap:break-word ">{{row.getProperty(col.field)}}</div>';
+            
+ 
+            $scope.pagingOptions = {
+                pageSizes:[10,20],
+                pageSize: 10,
+                totalServerItems: 0,
+                currentPage: 1,
+                initPageSize:'20'
+            };
+
+           
+            $scope.gridOptions = {
+
+
+                enableRowSelection: false,
+                enableHighlighting: true,
+                rowHeight: 47,
+                enableRowReordering: true,
+
+                data: 'listData',
+
+                i18n: 'zh-cn',
+                enablePaging: true,
+                showFooter: true,
+                totalServerItems: 'totalServerItems',
+                pagingOptions: $scope.pagingOptions,
+
+                columnDefs: [{
+                    height: 80,
+                    field: 'Status',
+                    displayName: 'Status',
+                    cellTemplate: cellTemplateConsLineHeight
+                },
+                {
+                    height: 80,
+                    field: 'BBCode',
+                    displayName: 'BBCode',
+                    cellTemplate: cellTemplateConsLineHeight
+                },
+                 {
+                     height: 80,
+                     field: 'Sku',
+                     displayName: 'SKU',
+                     cellTemplate: cellTemplateConsLineHeight
+                 },
+                 {
+                     height: 80,
+                     field: 'Quantity',
+                     displayName: 'Quantity',
+                     cellTemplate: cellTemplateConsLineHeight
+                 },
+                {
+                    height: 80,
+                    field: 'BuyerName',
+                    displayName: 'Buyer Name',
+                    cellTemplate: cellTemplateConsLineHeight
+                }                
+                ],
+
+               
+            };
+
+
+
+
+            $scope.$watch('pagingOptions', function (newVal, oldVal) {
+
+                var isChanged = false;
+                if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
+                    isChanged = true
+                }
+
+                if (newVal !== oldVal && newVal.pageSize !== oldVal.pageSize) {
+                    isChanged = true
+                }
+
+                if (isChanged) {
+                    $scope.loadPagingData();
+                }
+            }, true);
+
+
+
+            $scope.gridOptions.pagingOptions = $scope.pagingOptions;
+      
+            $scope.totalServerItems = 0;
+
+
+            $scope.loadPagingData = function () {                
+
+              
+              
+
+                var req = {
+                    method: 'POST',
+                    url: '/DirectLine/GetData',             
+
+                    data: { pageSize: $scope.pagingOptions.pageSize, currentPage: $scope.pagingOptions.currentPage }
+                }
+
+                $http(req).then(function (res) {          
+
+                
+                    $scope.listData = res.data;
+                        
+                    $scope.totalServerItems = 48;
+                    if (!$scope.$$phase) {
+                        $scope.$apply();
+                    }
+                });
+
+            }
+
+
+        
+
+
+
+            $scope.title = "Home/DirectLine Order Management";
+
+
+
+
+            $scope.loadPagingData();
+});
+
+
+
+    </script>
+
+    <div ng-app="my5App" ng-controller="gfhhj">
+        <div class="pagetitle"> {{title}} 
+        
+           <div style="float:right">
+               <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">Add</button>
+                   <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">Edit</button>
+                       <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+                           Add
+
+                       </button>
+            </div>
+        </div>
+        <div id="divGrid"  style="overflow-x:hidden;padding-right:12px" ng-grid="gridOptions"></div>
+
+
+    </div>
+
+</body>

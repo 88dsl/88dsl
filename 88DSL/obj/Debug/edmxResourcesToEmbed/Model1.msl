@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DSLModelStoreContainer" CdmEntityContainer="DSLEntities">
+    <EntitySetMapping Name="DirectlineOrder">
+      <EntityTypeMapping TypeName="DSLModel.DirectlineOrder">
+        <MappingFragment StoreEntitySet="DirectlineOrder">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="BBCode" ColumnName="BBCode" />
+          <ScalarProperty Name="Sku" ColumnName="Sku" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="BuyerName" ColumnName="BuyerName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

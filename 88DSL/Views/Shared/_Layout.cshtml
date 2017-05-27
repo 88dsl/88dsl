@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/bundles/angular")
+
+
+    @Scripts.Render("~/bundles/uigrid")
+
+
+
+    @RenderSection("scripts", required: false)
+
+
+
+
+    <style>
+        #main-nav {
+            margin-left: 1px;
+        }
+
+
+
+        .header-dropdown-list > li > .dropdown-toggle {
+            display: block;
+        }
+
+
+      
+
+        .menutitle {
+            text-align: center;
+            color: #f5ebeb;
+            font-size: 16px;
+            border-left: 0px;
+            border-right: 0px;
+        }
+
+         a  {
+          
+            color: #ffffff;
+       
+        }
+
+
+        .nav > li > a:hover, .nav > li > a:focus {
+            background-color: #575D65;
+        }
+          
+                    
+    </style>
+
+
+    
+
+
+
+
+
+    <script>
+
+
+
+
+        var dslApp = angular.module('my5App', ['ngGrid']);
+
+
+        var perPageSizeN = 30;
+
+        var tableRowHeight = 46;
+
+        $(document).ready(function () {
+
+
+            //  alert($(document).height() - 300);
+          
+
+
+
+        });
+
+    </script>
+
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 88 DSL</title>
+    @Styles.Render("~/Content/css")
+
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body style="padding-top:0px; background-color:#f2f2f2;">
+    <div class=" ">
+        <div class="" style="border-bottom: 1px solid #e4dcdc; height:70px;min-width:33px;padding-left:10px; padding-right:10px;">
+            <div style="min-width:33px; float:left">
+
+
+                <img src="~/Images/logo.jpg" style="width:200px; margin-top:0px" />
+            </div>
+            <div style="float:right; line-height:70px; margin-right:12px">
+
+
+
+
+                <div class="btn-group" style="float:left; margin-top:20px; margin-right:12px;line-height:70px">
+                    <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+                        Direct Orders Management
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" style="min-width:100px">
+                        <li><a href="/DirectLine/DirectLineOrderMgr#">DirectLine Orders Upload</a></li>
+                        <li><a href="/Home/Index#">Direct Orders Management</a></li>
+
+                    </ul>
+                </div>
+
+
+                
+
+                <div class="btn-group" style="float:left; margin-top:20px; margin-right:12px;line-height:70px">
+                    <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+                        English
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" style="min-width:100px">
+                        <li><a href="#">简体中文</a></li>
+                        <li><a href="#">English</a></li>
+
+                    </ul>
+                </div>
+
+
+
+
+                <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+                    LogOut
+                    <span></span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+   
+        <div style="margin-top:0px;margin-bottom:10px">
+
+
+     <!--       <div id="divLeftMenu7" style=" height 100% !important;width 230px;text-align:center;border-bottom: solid 1px; #504d4; background-color:#504d4a; position absolute; *position relative; float left; margin 0;">
+
+
+                <div class="list-group;">
+                    <a href="#dashboard-menu" class="menutitle list-group-item nav-header" data-toggle="collapse" style="border-radius :0px; background-color: #575D65; margin-bottom:0px; color:white;border:0px " target="menuFrame">Directline Management</a>
+                    <ul id="dashboard-menu" class="nav nav-list collapse in">
+
+
+
+                        <li><a href="~/DirectLine/DirectLineOrderMgr#"><i class=""></i><b> Direct Orders Upload</b></a></li>
+
+
+
+                        <li><a href="~/DirectLine/DirectLineOrderMgr#"><i class=""></i> Direct Orders Management</></a></li>
+
+
+
+                    </ul>
+
+
+                </div>
+
+
+
+
+            </div>
+         -->
+            <div style="margin-left: 10px; padding-top:10px;   position: relative; padding-right:20px">
+
+                @RenderBody()
+            </div>
+        </div>
+
+
+
+
+        <footer></footer>
+
+
+
+
+</body>
+</html>
