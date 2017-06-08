@@ -1,0 +1,228 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    ViewBag.Id = "123";
+}
+
+
+<body>
+
+
+
+    <style>
+        td {
+            border: 1px solid #dddddd;
+            padding: 10px;
+        }
+    </style>
+    <script>
+        dslApp.controller('UserDetailController', ['$scope', '$filter', '$http', '$timeout', function (scope, filter, http, timeout) {
+
+
+            var req = {
+                method: 'POST',
+                url: '/Admin/GetUserById',
+
+                data: { id: "@ViewBag.UserId" }
+            }
+
+            http(req).then(function (res) {
+
+
+                scope.selectData = res.data[0];
+
+
+
+
+            });
+
+
+            function json2str(o) {
+                var arr = [];
+                var fmt = function (s) {
+                    if (typeof s == 'object' && s != null) return json2str(s);
+                    return /^(string|number)$/.test(typeof s) ? "'" + s + "'" : s;
+                }
+                for (var i in o) arr.push("'" + i + "':" + fmt(o[i]));
+                return '{' + arr.join(',') + '}';
+            }
+
+
+            scope.saveRecord = function () {
+
+                var req = {
+                    method: 'POST',
+                    url: '/Admin/SubmitUserInfo',
+
+                    data: { userInfo: json2str(scope.selectData) }
+                }
+
+
+                http(req).then(function (res) {
+
+
+                    window.location.href = "/Admin/UserMgr";
+
+
+                });
+            }
+
+
+            scope.backToMain = function () {
+
+              
+
+
+               window.location.href = "/Admin/UserMgr";
+
+
+            }
+
+
+            scope.title = "Home/User";
+
+
+        }]);
+    </script>
+
+    <div ng-app="88DslApp" ng-controller="UserDetailController">
+
+
+
+        <div class="pagetitle">
+
+
+            {{title}}
+
+
+        </div>
+
+
+
+        <table>
+
+            <thead>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <td>User Name</td>
+                    <td>
+                        <input type="text"
+                               class="form-control" placeholder=""
+                               ng-model="selectData.UserName">
+                    </td>
+
+                    <td>Client Type</td>
+                    <td>
+                        <input type="text"
+                               class="form-control" placeholder=""
+                               ng-model="selectData.ClientType">
+                    </td>
+
+
+                    <td>Password</td>
+                    <td>
+                        <input type="password"
+                               class="form-control" placeholder=""
+                               ng-model="selectData.PWD">
+                    </td>
+
+
+                    <td>Phone</td>
+                    <td>
+                        <input type="password"
+                               class="form-control" placeholder=""
+                               ng-model="selectData.Phone">
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+
+                    <td>Company Type</td>
+                    <td>
+                        <input type="text"
+                               class="form-control" placeholder=""
+                               ng-model="selectData.CompanyType">
+                    </td>
+
+
+
+                    <td>Company Name</td>
+                    <td colspan="8">
+                        <input type="text"
+                               class="form-control" placeholder=""
+                               ng-model="selectData.CompanyName">
+                    </td>
+
+
+
+
+
+                </tr>
+
+
+
+                <tr>
+
+
+                    <td>Email</td>
+                    <td>
+                        <input type="text"
+                               class="form-control" placeholder=""
+                               ng-model="selectData.Email">
+                    </td>
+
+
+                    <td>Contact</td>
+                    <td colspan="5">
+                        <input type="text"
+                               style="width:200px"
+                               class="form-control" placeholder=""
+                               ng-model="selectData.Contact">
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+
+                    <td>Address</td>
+                    <td colspan="129">
+                        <input type="text"
+                               class="form-control" placeholder=""
+                               ng-model="selectData.Address">
+                    </td>
+
+
+                </tr>
+
+
+
+                <tr>
+
+
+                    <td colspan="18" style="margin:4px">
+                        <button type="button" ng-click="saveRecord();" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">Save</button>
+                        <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" ng-click="backToMain();" >Back</button>
+
+
+
+                    </td>
+
+
+
+                </tr>
+
+            </tbody>
+
+
+
+        </table>
+
+    </div>
+
+</body>

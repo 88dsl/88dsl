@@ -14,11 +14,11 @@ namespace _88DSL
     
     public partial class DirectlineOrder
     {
-        public int id { get; set; }
         public string Status { get; set; }
         public string BBCode { get; set; }
         public string Sku { get; set; }
         public string Quantity { get; set; }
         public string BuyerName { get; set; }
+        public int DirectlineOrderId { get; set; }
     }
 }

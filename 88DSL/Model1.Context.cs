@@ -26,5 +26,6 @@ namespace _88DSL
         }
     
         public virtual DbSet<DirectlineOrder> DirectlineOrder { get; set; }
+        public virtual DbSet<UserInfo> UserInfo { get; set; }
     }
 }

@@ -10,7 +10,7 @@
 
 <body  >        
 
-    <div ng-app="my5App" ng-controller="gfhhj">
+    <div ng-app="88DslApp" ng-controller="mainIndexController">
         kl {{message}}
         <div style="height:{{nggridheight}};  overflow-x:hidden" ng-grid="gridOptions"></div>
 
@@ -20,10 +20,10 @@
 
     <script>
 
-       var dslApp = angular.module('my5App', ['ngGrid']);
+     
 
 
-    dslApp.controller('gfhhj', function ($scope) {
+    dslApp.controller('mainIndexController', function ($scope) {
 
 
         var cellTemplateConsLineHeight = '<div style=" line-height:45px; height:45px;   margin-left:5px; margin-right:5px; width:auto;word-wrap:break-word ">{{row.getProperty(col.field)}}</div>';

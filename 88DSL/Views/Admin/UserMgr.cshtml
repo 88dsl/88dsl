@@ -1,0 +1,198 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    ViewBag.Id = "123";
+}
+
+
+<body>
+
+
+
+    <script>
+        dslApp.controller('UserMgrController', ['$scope', '$filter', '$http', '$timeout', function (scope, filter, http, timeout) {
+
+
+            var req = {
+                method: 'POST',
+                url: '/Admin/GetData'
+
+            }
+
+            http(req).then(function (res) {
+
+
+
+                scope.totalRec = res.data.length;
+
+                scope.displayedCollection = res.data;
+                scope.test = res.data;
+
+
+
+            });
+
+
+            scope.AddClick = function () {
+  
+                alert('sf');
+
+                $('#myModal').modal({
+                    keyboard: true
+                })
+            };
+
+
+
+
+        }]);
+    </script>
+
+    <div ng-app="88DslApp" ng-controller="UserMgrController">
+
+
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog"
+                 style="left: 1px; width: 920px; padding: 0px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" style="margin-top: -9px;"
+                                data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">User Detail</h4>
+                    </div>
+
+                    <div class="modal-body" style="padding: 5px">
+
+
+
+                        <table class="table table-striped">
+
+
+                            <tbody>
+                                <tr style="margin-top: 10px; height: 60px">
+
+                                    <td  style="padding-left: 15px">名称:</td>
+
+                                    <td >
+                                        <input type="text"
+                                               class="form-control" placeholder=""
+                                               ng-model="selectData.UserName">
+                                    </td>
+
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pagetitle">
+
+
+            {{title}}
+
+            <div style="float:right">
+                <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" ng-click="AddClick();">Add</button>
+             
+               
+
+                <select style="height:34px; font-size:14px" ng-model="itemsByPage">
+                    <option value="10">Show 10 Records In One Page</option>
+                    <option value="20">Show 20 Records In One Page</option>
+                    <option value="20">Show 30 Records In One Page</option>
+                </select>
+            </div>
+        </div>
+
+
+
+        <table st-table="displayedCollection" st-safe-src="test" class="table table-striped">
+
+
+            <thead>
+
+                <tr>
+                    <th colspan="8">
+                        <input st-search="Address"  placeholder="Search For Address" value="" class="input-sm form-control" type="search" style="width:200px;float:left" />
+
+                        <div style="float:right">
+
+
+                            <div style="float:left;line-height:44px">{{totalRec}} Records</div>
+                            <div style="float:right; margin:4px" st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="selPageSize"></div>
+
+
+
+                        </div>
+                    </th>
+                  
+
+              
+         
+                </tr>
+
+           
+                <tr>
+                    <th st-sort="UserName">User Name</th>
+                    <th st-sort="ClientType">Client Type</th>
+                    <th st-sort="Phone">Phone</th>
+                    <th st-sort="Email">Email</th>
+
+                    <th st-sort="CompanyType">Company Type</th>
+
+                    <th st-sort="Contact">Contact</th>
+                    
+
+                    <th st-sort="Address">Address</th>
+
+
+                    <th >Action</th>
+
+                
+                </tr>
+        
+            </thead>
+            <tbody>
+
+
+
+
+      
+
+                <tr ng-repeat="row in displayedCollection">
+                    <td>{{row.UserName}}</td>
+                    <td>{{row.ClientType}}</td>
+                    <td>{{row.Phone }}</td>
+                    <td>{{row.Email}}</td>
+                    <td>{{row.CompanyType}}</td>
+                    <td>{{row.Contact}}</td>
+                    <td>{{row.Address }}</td>
+    
+                    <td>
+                        <div class="btn-group" style="float:left; margin-top:0px; margin-right:12px;line-height:70px">
+                            <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+                                English
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" style="min-width:100px">
+                                <li><a  target="_top"  href="~/Admin/UserDetail?id={{row.UserId }}">Edit</a></li>
+                                <li><a href="#">Remove</a></li>
+
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
+
+
+        </table>
+
+    </div>
+
+</body>

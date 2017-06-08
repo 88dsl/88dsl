@@ -13,6 +13,25 @@
     <Property Name="Quantity" Type="nvarchar" MaxLength="50" />
     <Property Name="BuyerName" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“88DSL.dbo.UserInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="CompanyType" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ClientType" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompanyType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" />
+    <Property Name="Pwd" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="50" />
+    <Property Name="Position" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityContainer Name="DSLModelStoreContainer">
     <EntitySet Name="DirectlineOrder" EntityType="Self.DirectlineOrder" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -23,6 +42,21 @@
     [DirectlineOrder].[Quantity] AS [Quantity], 
     [DirectlineOrder].[BuyerName] AS [BuyerName]
     FROM [dbo].[DirectlineOrder] AS [DirectlineOrder]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UserInfo" EntityType="Self.UserInfo" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UserInfo].[Id] AS [Id], 
+    [UserInfo].[UserName] AS [UserName], 
+    [UserInfo].[CompanyName] AS [CompanyName], 
+    [UserInfo].[ClientType] AS [ClientType], 
+    [UserInfo].[CompanyType] AS [CompanyType], 
+    [UserInfo].[Address] AS [Address], 
+    [UserInfo].[Pwd] AS [Pwd], 
+    [UserInfo].[Email] AS [Email], 
+    [UserInfo].[Phone] AS [Phone], 
+    [UserInfo].[Contact] AS [Contact], 
+    [UserInfo].[Position] AS [Position]
+    FROM [dbo].[UserInfo] AS [UserInfo]</DefiningQuery>
     </EntitySet>
   </EntityContainer>
 </Schema>

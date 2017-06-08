@@ -9,10 +9,9 @@
 
 
     <script>
-        dslApp.controller('gfhhj', function ($scope, $http) {
+        dslApp.controller('directOrderMgrController', function ($scope, $http) {
 
-
-
+            
             var cellTemplateConsLineHeight = '<div style=" line-height:45px; height:45px;   margin-left:5px; margin-right:5px; width:auto;word-wrap:break-word ">{{row.getProperty(col.field)}}</div>';
             var cellTemplateCons = '<div style=" height:45px;   margin-left:5px; margin-right:5px; width:auto;word-wrap:break-word ">{{row.getProperty(col.field)}}</div>';
             
@@ -145,7 +144,7 @@
 
     </script>
 
-    <div ng-app="my5App" ng-controller="gfhhj">
+    <div ng-app="88DslApp" ng-controller="directOrderMgrController">
         <div class="pagetitle"> {{title}} 
         
            <div style="float:right">
@@ -153,7 +152,6 @@
                    <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">Edit</button>
                        <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
                            Add
-
                        </button>
             </div>
         </div>

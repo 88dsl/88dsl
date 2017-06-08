@@ -24,7 +24,7 @@ namespace _88DSL.Controllers
             {
 
 
-                result = entity.DirectlineOrder.OrderBy(a=>a.id).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList(); ;
+                result = entity.DirectlineOrder.OrderBy(a=>a.DirectlineOrderId).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList(); ;
                 //写回数据库
                 entity.SaveChanges();
             }

@@ -31,8 +31,8 @@ namespace _88DSL
 
 
 
-            bundles.Add(new ScriptBundle("~/bundles/uigrid").Include(
-          "~/Scripts/ui-grid.js"));
+            bundles.Add(new ScriptBundle("~/bundles/smarttable").Include(
+          "~/Scripts/smart-table.js"));
 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
