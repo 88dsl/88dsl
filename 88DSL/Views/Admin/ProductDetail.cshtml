@@ -1,0 +1,192 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    ViewBag.Id = "123";
+}
+
+
+<body>
+
+
+
+    <style>
+        td {
+            border: 1px solid #dddddd;
+            padding: 10px;
+        }
+    </style>
+    <script>
+        dslApp.controller('ProductDetailController', ['$scope', '$filter', '$http', '$timeout', function (scope, filter, http, timeout) {
+
+
+            var req = {
+                method: 'POST',
+                url: '/Admin/GetProductById',
+
+                data: { id: "@ViewBag.ProductId" }
+            }
+
+            http(req).then(function (res) {
+
+
+                scope.selectData = res.data[0];
+                
+                
+            });
+
+
+            function json2str(o) {
+                var arr = [];
+                var fmt = function (s) {
+                    if (typeof s == 'object' && s != null) return json2str(s);
+                    return /^(string|number)$/.test(typeof s) ? "'" + s + "'" : s;
+                }
+                for (var i in o) arr.push("'" + i + "':" + fmt(o[i]));
+                return '{' + arr.join(',') + '}';
+            }
+
+
+            scope.saveRecord = function () {
+
+                var req = {
+                    method: 'POST',
+                    url: '/Admin/SubmitProductInfo',
+
+                    data: { userInfo: json2str(scope.selectData) }
+                }
+
+
+                http(req).then(function (res) {
+
+                    window.location.href = "/Admin/ProductMgr";
+
+                });
+            }
+
+
+            scope.backToMain = function () {
+              
+
+               window.location.href = "/Admin/ProductMgr";
+
+
+            }
+
+
+            scope.title = "Home/Product";
+
+
+        }]);
+    </script>
+
+    <div ng-app="88DslApp" ng-controller="ProductDetailController">
+
+
+
+        <div class="pagetitle">
+
+
+            {{title}}
+
+
+        </div>
+
+
+
+        <table>
+
+            <thead>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Product Name</td>
+                    <td>
+                        <input type="text"
+                               class="form-control" placeholder=""
+                               ng-model="selectData.ProductName">
+                    </td>
+
+                    <td>Item Code</td>
+                    <td>
+                        <input type="text"
+                               class="form-control" placeholder=""
+                               ng-model="selectData.ItemCode">
+                    </td>
+
+
+                    <td>Shipping Charges</td>
+                    <td>
+                        <input type="text"
+                               class="form-control" placeholder=""
+                               ng-model="selectData.ShippingCharges">
+                    </td>
+
+
+                    <td>Registered Fee</td>
+                    <td>
+                        <input type="text"
+                               class="form-control" placeholder=""
+                               ng-model="selectData.RegisteredFee">
+                    </td>
+
+                </tr>
+
+
+
+                <tr>
+                    <td>Service Fee</td>
+                    <td>
+                        <input type="text"
+                               class="form-control" placeholder=""
+                               ng-model="selectData.ServiceFee">
+                    </td>
+
+                    <td></td>
+                    <td>
+                       
+                    </td>
+
+
+                    <td></td>
+                    <td>
+                        
+                    </td>
+
+
+                    <td></td>
+                    <td>
+                       
+                    </td>
+
+                </tr>
+
+              
+
+
+
+
+
+                <tr>
+
+
+                    <td colspan="18" style="margin:4px">
+                        <button type="button" ng-click="saveRecord();" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">Save</button>
+                        <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" ng-click="backToMain();" >Back</button>
+
+
+
+                    </td>
+
+
+
+                </tr>
+
+            </tbody>
+
+
+
+        </table>
+
+    </div>
+
+</body>

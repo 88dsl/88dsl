@@ -9,154 +9,132 @@
 
 
     <script>
-        dslApp.controller('directOrderMgrController', function ($scope, $http) {
-
-            
-            var cellTemplateConsLineHeight = '<div style=" line-height:45px; height:45px;   margin-left:5px; margin-right:5px; width:auto;word-wrap:break-word ">{{row.getProperty(col.field)}}</div>';
-            var cellTemplateCons = '<div style=" height:45px;   margin-left:5px; margin-right:5px; width:auto;word-wrap:break-word ">{{row.getProperty(col.field)}}</div>';
-            
- 
-            $scope.pagingOptions = {
-                pageSizes:[10,20],
-                pageSize: 10,
-                totalServerItems: 0,
-                currentPage: 1,
-                initPageSize:'20'
-            };
-
-           
-            $scope.gridOptions = {
+        dslApp.controller('DirectLineOrderMgrController', ['$scope', '$filter', '$http', '$timeout', function (scope, filter, http, timeout) {
 
 
-                enableRowSelection: false,
-                enableHighlighting: true,
-                rowHeight: 47,
-                enableRowReordering: true,
-
-                data: 'listData',
-
-                i18n: 'zh-cn',
-                enablePaging: true,
-                showFooter: true,
-                totalServerItems: 'totalServerItems',
-                pagingOptions: $scope.pagingOptions,
-
-                columnDefs: [{
-                    height: 80,
-                    field: 'Status',
-                    displayName: 'Status',
-                    cellTemplate: cellTemplateConsLineHeight
-                },
-                {
-                    height: 80,
-                    field: 'BBCode',
-                    displayName: 'BBCode',
-                    cellTemplate: cellTemplateConsLineHeight
-                },
-                 {
-                     height: 80,
-                     field: 'Sku',
-                     displayName: 'SKU',
-                     cellTemplate: cellTemplateConsLineHeight
-                 },
-                 {
-                     height: 80,
-                     field: 'Quantity',
-                     displayName: 'Quantity',
-                     cellTemplate: cellTemplateConsLineHeight
-                 },
-                {
-                    height: 80,
-                    field: 'BuyerName',
-                    displayName: 'Buyer Name',
-                    cellTemplate: cellTemplateConsLineHeight
-                }                
-                ],
-
-               
-            };
-
-
-
-
-            $scope.$watch('pagingOptions', function (newVal, oldVal) {
-
-                var isChanged = false;
-                if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
-                    isChanged = true
-                }
-
-                if (newVal !== oldVal && newVal.pageSize !== oldVal.pageSize) {
-                    isChanged = true
-                }
-
-                if (isChanged) {
-                    $scope.loadPagingData();
-                }
-            }, true);
-
-
-
-            $scope.gridOptions.pagingOptions = $scope.pagingOptions;
-      
-            $scope.totalServerItems = 0;
-
-
-            $scope.loadPagingData = function () {                
-
-              
-              
-
-                var req = {
-                    method: 'POST',
-                    url: '/DirectLine/GetData',             
-
-                    data: { pageSize: $scope.pagingOptions.pageSize, currentPage: $scope.pagingOptions.currentPage }
-                }
-
-                $http(req).then(function (res) {          
-
-                
-                    $scope.listData = res.data;
-                        
-                    $scope.totalServerItems = 48;
-                    if (!$scope.$$phase) {
-                        $scope.$apply();
-                    }
-                });
+            var req = {
+                method: 'POST',
+                url: '/DirectLine/GetEbayOrderData'
 
             }
 
+            scope.isLoaded = false;
 
-        
-
-
-
-            $scope.title = "Home/DirectLine Order Management";
+            http(req).then(function (res) {
 
 
 
+                scope.totalRec = res.data.length;
 
-            $scope.loadPagingData();
-});
+                scope.displayedCollection = res.data;
+                scope.test = res.data;
+
+
+                scope.isLoaded = true;
+
+
+            });
 
 
 
+
+
+        }]);
     </script>
 
-    <div ng-app="88DslApp" ng-controller="directOrderMgrController">
-        <div class="pagetitle"> {{title}} 
-        
-           <div style="float:right">
-               <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">Add</button>
-                   <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">Edit</button>
-                       <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
-                           Add
-                       </button>
+    <div ng-app="88DslApp" ng-controller="DirectLineOrderMgrController">
+
+
+        <div class="pagetitle">
+
+
+            {{title}}
+
+            <div style="float:right">
+                <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" ng-click="AddClick();">Add</button>
+
+
+
+                <select style="height:34px; font-size:14px" ng-model="itemsByPage">
+                    <option value="10">Show 10 Records In One Page</option>
+                    <option value="20">Show 20 Records In One Page</option>
+                    <option value="20">Show 30 Records In One Page</option>
+                </select>
             </div>
         </div>
-        <div id="divGrid"  style="overflow-x:hidden;padding-right:12px" ng-grid="gridOptions"></div>
 
+
+
+        <table st-table="displayedCollection" st-safe-src="test" class="table table-striped">
+
+
+            <thead>
+
+                <tr>
+                    <th colspan="8">
+                        <input st-search="Address" placeholder="Search For Address" value="" class="input-sm form-control" type="search" style="width:200px;float:left" />
+
+                        <div style="float:right">
+
+
+                            <div ng-show="isLoaded" style="float:left;line-height:44px">{{totalRec}} Records</div>
+
+
+                            <div ng-show="isLoaded==false" style="float:left;line-height:44px"><img src="~/Images/loading.gif" />Loding Data</div>
+
+                            <div style="float:right; margin:4px" st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="selPageSize"></div>
+
+
+
+                        </div>
+                    </th>
+
+
+
+
+                </tr>
+
+
+             
+ 
+
+                <tr>
+                    <th st-sort="BuyerName">Buyer Name</th>
+                    <th st-sort="BBCode">B BCode</th>
+                    <th st-sort="Quantity">Quantity</th>
+                    <th st-sort="Status">Status</th>
+
+                  
+
+                    <th>Action</th>
+
+
+                </tr>
+
+            </thead>
+            <tbody>
+                                
+                <tr ng-repeat="row in displayedCollection">
+                    <td>{{row.BuyerName}}</td>
+                    <td>{{row.BBCode}}</td>
+                    <td>{{row.Quantity }}</td>
+                    <td>{{row.Status}}</td>
+   
+                    <td>
+                        <div class="btn-group" style="float:left; margin-top:0px; margin-right:12px;line-height:70px">
+                            <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+                                English
+                                <span class="caret"></span>
+                            </button>
+                      
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
+
+
+        </table>
 
     </div>
 

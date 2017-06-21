@@ -31,6 +31,7 @@ namespace _88DSL
 
 
 
+
             bundles.Add(new ScriptBundle("~/bundles/smarttable").Include(
           "~/Scripts/smart-table.js"));
 
@@ -38,6 +39,11 @@ namespace _88DSL
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css", "~/Content/ui-grid.css"));
+
+
+
+
+
         }
     }
 }

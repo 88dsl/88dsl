@@ -25,5 +25,7 @@ namespace _88DSL
         public string Contact { get; set; }
         public string Position { get; set; }
         public int UserId { get; set; }
+        public string UserCode { get; set; }
+        public Nullable<decimal> Balance { get; set; }
     }
 }

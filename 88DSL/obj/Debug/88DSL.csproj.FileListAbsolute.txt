@@ -199,3 +199,9 @@ D:\Project\netproject\git\88dsl\88DSL\bin\zh-Hans\Microsoft.Owin.Security.Twitte
 D:\Project\netproject\git\88dsl\88DSL\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 D:\Project\netproject\git\88dsl\88DSL\obj\Debug\88DSL.dll
 D:\Project\netproject\git\88dsl\88DSL\obj\Debug\88DSL.pdb
+D:\Project\netproject\git\88dsl\88DSL\bin\eBay.Service.dll
+D:\Project\netproject\git\88dsl\88DSL\bin\eBay.Service.pdb
+D:\Project\netproject\git\88dsl\88DSL\bin\eBay.Service.xml
+D:\Project\netproject\git\88dsl\88DSL\obj\Debug\88DSL.csprojResolveAssemblyReference.cache
+D:\Project\netproject\git\88dsl\88DSL\bin\PayPal.dll
+D:\Project\netproject\git\88dsl\88DSL\bin\PayPal.xml

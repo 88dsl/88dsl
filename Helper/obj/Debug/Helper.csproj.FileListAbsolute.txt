@@ -1,0 +1,8 @@
+D:\Project\netproject\git\88dsl\Helper\obj\Debug\Helper.csprojResolveAssemblyReference.cache
+D:\Project\netproject\git\88dsl\Helper\obj\Debug\Samples.Helper.UI.CheckBoxGroupControl.resources
+D:\Project\netproject\git\88dsl\Helper\obj\Debug\Samples.Helper.UI.EditListView.resources
+D:\Project\netproject\git\88dsl\Helper\obj\Debug\Samples.Helper.UI.InternationalShippingServiceControl.resources
+D:\Project\netproject\git\88dsl\Helper\obj\Debug\Samples.Helper.UI.IntlShippingServiceListView.resources
+D:\Project\netproject\git\88dsl\Helper\obj\Debug\Samples.Helper.UI.ShippingServiceControl.resources
+D:\Project\netproject\git\88dsl\Helper\obj\Debug\Samples.Helper.UI.ShippingServiceListView.resources
+D:\Project\netproject\git\88dsl\Helper\obj\Debug\Helper.csproj.GenerateResource.Cache

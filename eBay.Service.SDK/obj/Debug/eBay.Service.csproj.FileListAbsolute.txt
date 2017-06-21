@@ -1,0 +1,11 @@
+D:\迅雷下载\eBayDotNET40sdk981\eBay .NET SDK v981 Release\Source\eBay.Service.SDK\bin\Debug\eBay.Service.XML
+D:\迅雷下载\eBayDotNET40sdk981\eBay .NET SDK v981 Release\Source\eBay.Service.SDK\bin\Debug\eBay.Service.dll
+D:\迅雷下载\eBayDotNET40sdk981\eBay .NET SDK v981 Release\Source\eBay.Service.SDK\bin\Debug\eBay.Service.pdb
+D:\迅雷下载\eBayDotNET40sdk981\eBay .NET SDK v981 Release\Source\eBay.Service.SDK\obj\Debug\eBay.Service.csprojResolveAssemblyReference.cache
+D:\迅雷下载\eBayDotNET40sdk981\eBay .NET SDK v981 Release\Source\eBay.Service.SDK\obj\Debug\eBay.Service.dll
+D:\迅雷下载\eBayDotNET40sdk981\eBay .NET SDK v981 Release\Source\eBay.Service.SDK\obj\Debug\eBay.Service.pdb
+D:\Project\netproject\git\88dsl\eBay.Service.SDK\obj\Debug\eBay.Service.dll
+D:\Project\netproject\git\88dsl\eBay.Service.SDK\obj\Debug\eBay.Service.pdb
+D:\Project\netproject\git\88dsl\eBay.Service.SDK\bin\Debug\eBay.Service.XML
+D:\Project\netproject\git\88dsl\eBay.Service.SDK\bin\Debug\eBay.Service.dll
+D:\Project\netproject\git\88dsl\eBay.Service.SDK\bin\Debug\eBay.Service.pdb

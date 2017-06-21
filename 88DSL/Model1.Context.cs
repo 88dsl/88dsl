@@ -27,5 +27,10 @@ namespace _88DSL
     
         public virtual DbSet<DirectlineOrder> DirectlineOrder { get; set; }
         public virtual DbSet<UserInfo> UserInfo { get; set; }
+
+        public virtual DbSet<ProductInfo> ProductInfo { get; set; }
+
+        public virtual DbSet<PaymentInfo> PaymentInfo { get; set; }
+
     }
 }

@@ -1,0 +1,209 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    ViewBag.Id = "123";
+}
+
+
+<body>
+
+
+
+    <style>
+        td {
+            border: 1px solid #dddddd;
+            padding: 10px;
+        }
+    </style>
+    <script>
+        dslApp.controller('RechargeController', ['$scope', '$filter', '$http', '$timeout','$interval', function (scope, filter, http, timeout,interval) {
+
+
+
+
+
+            $(document).ready(
+
+
+
+
+            function () {
+                          
+
+
+                paypal.Button.render({
+
+                    env: 'sandbox', // Or 'sandbox'
+
+                    client: {
+                        sandbox: 'AQmW6s0chChHeblhmaIYQda6Bn1gmfSSUnvUCHNCLZM_7BiLOb5BMrINuIxUswdG8Prb8K3ktHQpZuho',
+                        production: 'xxxxxxxxx'
+                    },
+
+                    commit: true, // Show a 'Pay Now' button
+
+                    payment: function (data, actions) {
+                        return actions.payment.create({
+                            transactions: [
+                                {
+                                    amount: { total: scope.Amount, currency: 'USD' }
+                                }
+
+
+                            ]
+                        });
+
+
+
+
+                    },
+
+                    onAuthorize: function (data, actions) {
+                        return actions.payment.execute().then(function (payment) {
+
+                            if (payment != null) {
+                                var pid = payment.id;
+                                var state = payment.state;
+
+                                if (state == "approved") {
+
+                                    var req = {
+                                        method: 'POST',
+                                        url: '/Account/SubmitRechargeInfo',
+
+                                        data: { "paymentId": pid, "amount": payment.transactions[0].amount.total, "paymentTime": payment.create_time }
+                                    }
+
+                                    http(req).then(function (res) {
+
+                                        if (res.data[0] != "0") {
+                                            alert("Rechage Error");
+                                            return;
+
+                                        }
+                                        else {
+                                            scope.showPaiedResult = true;
+                                        }
+
+
+                                    });
+
+
+                                }
+                            }
+
+
+                        });
+                    }
+
+                }, '#paypal-button');
+
+
+
+
+                var timer = interval(function () {
+                    var tmp = $("#paypal-button-container").length;
+                    if (tmp != null || tmp > 0) {
+
+                       
+                        interval.cancel(scope.timer);
+                    }
+                }, 1000);
+
+
+                var req = {
+                    method: 'POST',
+                    url: '/Admin/GetProfileByUserId',
+
+                }
+
+                http(req).then(function (res) {
+
+
+                    scope.UserId = res.data[0].UserId;
+                    scope.UserName = res.data[0].UserName;
+                    scope.Balance = res.data[0].Balance;
+
+
+
+                });
+
+                scope.Amount = 100;
+
+                scope.title = "Home/Recharge";
+
+
+
+
+
+            });
+
+        }]);
+    </script>
+
+    <div ng-app="88DslApp" ng-controller="RechargeController">
+
+
+
+        <div class="pagetitle">
+
+
+            {{title}}
+
+
+        </div>
+
+        <div ng-show="showPaiedResult">Pay Success, You Can go to <a href="~/DirectLine/DirectLineOrderMgr" target="_top">Directline Order Management</a></div>
+
+        <table ng-hide="showPaiedResult">
+
+            <thead>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Recharge Amount($):</td>
+                    <td>
+                        <input type="text"
+                               class="form-control" placeholder=""
+                               ng-model="Amount">
+                    </td>
+
+
+
+                    <td>User Name:</td>
+                    <td>
+                        <input type="text"
+                               class="form-control" placeholder=""
+                               ng-model="UserName">
+                    </td>
+
+                    <td>Current Balance:</td>
+                    <td>
+                        <input type="text"
+                               class="form-control" placeholder=""
+                               readonly="readonly"
+                               ng-model="Balance">
+                    </td>
+
+
+
+                </tr>
+
+
+                <tr>
+                    <td colspan="6"><div  id="paypal-button"></div></td>
+
+
+                </tr>
+
+
+
+
+            </tbody>
+
+
+
+        </table>
+
+    </div>
+
+</body>

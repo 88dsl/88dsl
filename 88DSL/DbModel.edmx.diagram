@@ -7,6 +7,8 @@
       <Diagram DiagramId="ac8cc53bf681421d88fd93454b2feb8b" Name="Diagram1">
         <EntityTypeShape EntityType="DSLModel.DirectlineOrder" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DSLModel.UserInfo" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DSLModel.ProductInfo" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DSLModel.PaymentInfo" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

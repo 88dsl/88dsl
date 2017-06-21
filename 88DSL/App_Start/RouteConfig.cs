@@ -16,8 +16,10 @@ namespace _88DSL
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "DrirectLine", action = "DirectLineMgr", id = UrlParameter.Optional }
             );
         }
     }
+
+
 }

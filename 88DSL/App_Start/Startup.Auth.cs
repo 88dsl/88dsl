@@ -14,6 +14,7 @@ namespace _88DSL
         // 有关配置身份验证的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
+            return;
             // 配置数据库上下文、用户管理器和登录管理器，以便为每个请求使用单个实例
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
@@ -25,7 +26,7 @@ namespace _88DSL
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Account/Login"),
+                LoginPath = new PathString("/Login/Login"),
                 Provider = new CookieAuthenticationProvider
                 {
                     // 当用户登录时使应用程序可以验证安全戳。

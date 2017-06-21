@@ -18,22 +18,29 @@
         dslApp.controller('UserDetailController', ['$scope', '$filter', '$http', '$timeout', function (scope, filter, http, timeout) {
 
 
-            var req = {
-                method: 'POST',
-                url: '/Admin/GetUserById',
+            if ("@ViewBag.UserId" == null) {
 
-                data: { id: "@ViewBag.UserId" }
+                scope.selectData = new object();
+                scope.selectData.UserId = -1;
             }
+            else {
 
-            http(req).then(function (res) {
+                var req = {
+                    method: 'POST',
+                    url: '/Admin/GetUserById',
+
+                    data: { id: "@ViewBag.UserId" }
+                }
+
+                http(req).then(function (res) {
 
 
-                scope.selectData = res.data[0];
+                    scope.selectData = res.data[0];
 
+                    
 
-
-
-            });
+                });
+            }
 
 
             function json2str(o) {
@@ -69,7 +76,7 @@
 
             scope.backToMain = function () {
 
-              
+
 
 
                window.location.href = "/Admin/UserMgr";
@@ -112,19 +119,24 @@
                                ng-model="selectData.UserName">
                     </td>
 
-                    <td>Client Type</td>
-                    <td>
-                        <input type="text"
-                               class="form-control" placeholder=""
-                               ng-model="selectData.ClientType">
-                    </td>
-
+              
 
                     <td>Password</td>
                     <td>
                         <input type="password"
                                class="form-control" placeholder=""
                                ng-model="selectData.PWD">
+                    </td>
+
+
+
+                    <td>selectData.ClientType</td>
+                    <td>
+                        <select ng-model="selectData.ClientType" class="form-control">
+                            <option value="1">Back End User</option>
+                            <option value="2">Customer</option>
+                        </select >
+               
                     </td>
 
 
@@ -158,8 +170,7 @@
                     </td>
 
 
-
-
+                    
 
                 </tr>
 

@@ -1,0 +1,9 @@
+D:\Project\netproject\git\88dsl\eBay.Service.SDK.Attribute\obj\Debug\eBay.Service.SDK.Attribute.csprojResolveAssemblyReference.cache
+D:\Project\netproject\git\88dsl\eBay.Service.SDK.Attribute\bin\Debug\eBay.Service.SDK.Attribute.XML
+D:\Project\netproject\git\88dsl\eBay.Service.SDK.Attribute\bin\Debug\eBay.Service.SDK.Attribute.dll
+D:\Project\netproject\git\88dsl\eBay.Service.SDK.Attribute\bin\Debug\eBay.Service.SDK.Attribute.pdb
+D:\Project\netproject\git\88dsl\eBay.Service.SDK.Attribute\bin\Debug\eBay.Service.dll
+D:\Project\netproject\git\88dsl\eBay.Service.SDK.Attribute\bin\Debug\eBay.Service.pdb
+D:\Project\netproject\git\88dsl\eBay.Service.SDK.Attribute\bin\Debug\eBay.Service.xml
+D:\Project\netproject\git\88dsl\eBay.Service.SDK.Attribute\obj\Debug\eBay.Service.SDK.Attribute.dll
+D:\Project\netproject\git\88dsl\eBay.Service.SDK.Attribute\obj\Debug\eBay.Service.SDK.Attribute.pdb
